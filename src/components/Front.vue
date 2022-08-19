@@ -31,6 +31,7 @@
                     required
                     outlined
                     clearable
+                    style="margin: 5px;"
                   ></v-text-field>
                 </v-row>
 
@@ -40,6 +41,7 @@
                     outlined
                     clearable
                     required
+                       style="margin: 5px;"
                   ></v-text-field>
                 </v-row>
 
@@ -50,6 +52,7 @@
                     outlined
                     type="number"
                     clearable
+                       style="margin: 5px;"
                   ></v-text-field>
                 </v-row>
               </v-col>
@@ -63,6 +66,7 @@
                     outlined
                     clearable
                     required
+                       style="margin: 5px;"
                   ></v-text-field>
                 </v-row>
                 <v-row>
@@ -71,6 +75,7 @@
                     required
                     outlined
                     clearable
+                       style="margin: 5px;"
                   ></v-text-field>
                 </v-row>
 
@@ -80,6 +85,7 @@
                     type="number"
                     outlined
                     clearable
+                       style="margin: 5px;"
                     required
                   ></v-text-field>
                 </v-row>
@@ -108,7 +114,7 @@
         </v-card>
       </v-dialog>
       <v-row>
-        <v-col cols="8">
+        <v-col   cols="8" sm="8">
           <h3>Rank</h3>
           <v-divder></v-divder>
           <v-simple-table dense>
@@ -137,7 +143,7 @@
           </v-simple-table>
         </v-col>
 
-        <v-col cols="4">
+        <v-col cols="4" sm="4">
           <h3>Wedstrijden</h3>
           <v-divder></v-divder>
           Sergio - 7-10 Erik

@@ -8,6 +8,7 @@
           src="@/assets/logo.png"
           alt="Topdesk"
           title="Topdesk interne wedstrijden"
+      
       /></router-link>
       <div class="links">
         <router-link class="menu-item" :to="{ name: 'Ranking' }">Ranking</router-link>
@@ -95,7 +96,7 @@ img {
   flex-direction: column;
   width: 250px;
   height: 100vh;
-  background-color: whitesmoke;
+  background-color: #0a7da0;
   z-index: 1000;
 }
 #hamburger {
@@ -129,7 +130,7 @@ img {
 }
 .logo {
   width: 100px;
-  height: 90px;
+ 
   margin-left: 5%;
 }
 .links {

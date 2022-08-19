@@ -2,7 +2,7 @@
 
 <template>
   <div >
-  <img src= @/assets/banner.jpg height="200" width="100%" />
+  <img src= @/assets/logo.png height="200" width="100%" />
 
        <v-container >
 
