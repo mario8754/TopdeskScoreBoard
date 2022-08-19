@@ -29,6 +29,7 @@
                 <v-row>
                   <v-text-field
                     label="Speler 1"
+                    v-model="player"
                     required
                     outlined
                     clearable
@@ -43,11 +44,13 @@
                     clearable
                     required
                     style="margin: 5px;"
+                          v-model="player"
                   ></v-text-field>
                 </v-row>
 
                 <v-row>
                   <v-text-field
+                        v-model="score"
                     label="Score"
                     required
                     outlined
@@ -65,6 +68,7 @@
 
                 <v-row>
                   <v-text-field
+                        v-model="player"
                     label="Speler 1"
                     outlined
                     clearable
@@ -74,6 +78,7 @@
                 </v-row>
                 <v-row>
                   <v-text-field
+                        v-model="player"
                     label="Speler 2"
                     required
                     outlined
@@ -84,6 +89,7 @@
 
                 <v-row>
                   <v-text-field
+                        v-model="score"
                     label="Score"
                     type="number"
                     outlined
@@ -99,6 +105,7 @@
                 color="#48bf86"
                 style="color:white;border-bottom: 4px solid #127359;"
                 block
+                @click="addPlayersScore()"
               >
                 Verzenden</v-btn
               >
@@ -153,10 +160,14 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
       dialog: false,
+     userScores:[],
+     player:"",
+     score:"",
       spelers: [
         {
           positie: 1,
@@ -196,5 +207,34 @@ export default {
       ],
     };
   },
+async  mounted(){
+await this.getData();
+  },
+   methods: {
+      async getData() {
+      await axios
+        .get(
+          `https://streambigdata.nl/api/score`
+        )
+        .then((response) => (this.userScores= response.data));
+      },
+      async addPlayersScore() {
+      try {
+        await axios.post(`https://streambigdata.nl/api/score`, {
+          playername: this.player,
+          score: this.score,
+        
+        });
+        this.$swal.fire("Dankje!", "Aangemaakt", "success");
+        
+        this.getData();
+      } catch (reason) {
+        this.errored = true;
+        console.log(reason);
+        this.$swal.fire("Error!", "Er Is een foutmelding.", "error");
+        throw reason;
+      }
+    },
+   }
 };
 </script>
