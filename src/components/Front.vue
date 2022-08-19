@@ -15,15 +15,16 @@
         </template>
         <v-card>
           <v-card-title>
-            <span class="text-center" style="text-align:center">Wedstrijd invoeren</span>
+            <span class="text-center" style="text-align:center"
+              >Wedstrijd invoeren</span
+            >
           </v-card-title>
           <v-card-text>
-            <v-container>
-              <v-row>
-              
+            <v-row>
               <v-col cols="6">
-             
-                <v-row><span style="color:blue;">  <h5>Team Blauw</h5></span></v-row>
+                <v-row
+                  ><span style="color:blue;"> <h5>Team Blauw</h5></span></v-row
+                >
 
                 <v-row>
                   <v-text-field
@@ -41,7 +42,7 @@
                     outlined
                     clearable
                     required
-                       style="margin: 5px;"
+                    style="margin: 5px;"
                   ></v-text-field>
                 </v-row>
 
@@ -52,21 +53,23 @@
                     outlined
                     type="number"
                     clearable
-                       style="margin: 5px;"
+                    style="margin: 5px;"
                   ></v-text-field>
                 </v-row>
               </v-col>
 
               <v-col cols="6">
-                <v-row><span style="color:red;">  <h5>Team Rood</h5></span></v-row>
-               
+                <v-row
+                  ><span style="color:red;"> <h5>Team Rood</h5></span></v-row
+                >
+
                 <v-row>
                   <v-text-field
                     label="Speler 1"
                     outlined
                     clearable
                     required
-                       style="margin: 5px;"
+                    style="margin: 5px;"
                   ></v-text-field>
                 </v-row>
                 <v-row>
@@ -75,7 +78,7 @@
                     required
                     outlined
                     clearable
-                       style="margin: 5px;"
+                    style="margin: 5px;"
                   ></v-text-field>
                 </v-row>
 
@@ -85,36 +88,32 @@
                     type="number"
                     outlined
                     clearable
-                       style="margin: 5px;"
+                    style="margin: 5px;"
                     required
                   ></v-text-field>
                 </v-row>
               </v-col>
-                  </v-row>
-              <v-row>
-                <v-btn
-                  color="#48bf86"
-                  style="color:white;border-bottom: 4px solid #127359;"
-                  block
-                >
-                  Verzenden</v-btn
-                >
-              </v-row>
-          
-            </v-container>
-            <small>*indicates required field</small>
+            </v-row>
+            <v-row>
+              <v-btn
+                color="#48bf86"
+                style="color:white;border-bottom: 4px solid #127359;"
+                block
+              >
+                Verzenden</v-btn
+              >
+            </v-row>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="dialog = false">
-             Afsluiten
+              Afsluiten
             </v-btn>
-            
           </v-card-actions>
         </v-card>
       </v-dialog>
       <v-row>
-        <v-col   cols="8" sm="8">
+        <v-col cols="8" sm="8">
           <h3>Rank</h3>
           <v-divder></v-divder>
           <v-simple-table dense>

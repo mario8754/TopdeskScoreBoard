@@ -129,7 +129,7 @@ img {
   justify-content: space-between;
 }
 .logo {
-  width: 100px;
+  width: 200px;
  
   margin-left: 5%;
 }
