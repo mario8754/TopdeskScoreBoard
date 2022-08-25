@@ -7,7 +7,7 @@
             v-bind="attrs"
             v-on="on"
             color="#48bf86"
-            style="color:white;border-bottom: 4px solid #127359;"
+            style="color:white;border-bottom: 4px solid #127359;margin-bottom:50px"
             block
           >
             Wedstrijd invoeren</v-btn
@@ -28,7 +28,7 @@
 
                 <v-row>
                   <v-text-field
-                    label="Speler 1"
+                    label="Speler 1 (test)"
                     v-model="player"
                     required
                     outlined
@@ -44,14 +44,13 @@
                     clearable
                     required
                     style="margin: 5px;"
-                          v-model="player"
                   ></v-text-field>
                 </v-row>
 
                 <v-row>
                   <v-text-field
-                        v-model="score"
-                    label="Score"
+                    v-model="score"
+                    label="Score (test)"
                     required
                     outlined
                     type="number"
@@ -68,7 +67,6 @@
 
                 <v-row>
                   <v-text-field
-                        v-model="player"
                     label="Speler 1"
                     outlined
                     clearable
@@ -78,7 +76,6 @@
                 </v-row>
                 <v-row>
                   <v-text-field
-                        v-model="player"
                     label="Speler 2"
                     required
                     outlined
@@ -89,7 +86,7 @@
 
                 <v-row>
                   <v-text-field
-                        v-model="score"
+                    v-model="score"
                     label="Score"
                     type="number"
                     outlined
@@ -121,37 +118,46 @@
       </v-dialog>
       <v-row>
         <v-col cols="8" sm="8">
-          <h3>Rank</h3>
-          <v-divder></v-divder>
-          <v-simple-table dense>
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th class="text-left">
-                    #
-                  </th>
-                  <th class="text-left">
-                    Speler
-                  </th>
-                  <th class="text-left">
-                    Score
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="item in spelers" :key="item.speler">
-                  <td>{{ item.positie }}</td>
-                  <td>{{ item.speler }}</td>
-                  <td>{{ item.score }}</td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
+
+<div style="margin-bottom: 30px;">
+
+<v-toolbar
+  color="blue"
+  dense
+  elevation="24"
+  flat
+  outlined
+  rounded
+  shaped
+>     <h3>Rank</h3></v-toolbar>
+     </div>
+       
+          <v-data-table
+            :headers="headers"
+            :items="userScores"
+            disable-pagination
+            :hide-default-footer="true"
+            class="elevation-1"
+          >
+          </v-data-table>
         </v-col>
 
         <v-col cols="4" sm="4">
-          <h3>Wedstrijden</h3>
-          <v-divder></v-divder>
+
+          <div  style="margin-bottom: 30px;text-align: center;">
+
+<v-toolbar
+  color="blue"
+  dense
+  elevation="24"
+  flat
+  outlined
+  rounded
+  shaped
+>           <h3 >Wedstrijden</h3></v-toolbar>
+     </div>
+    
+     
           Sergio - 7-10 Erik
         </v-col>
       </v-row>
@@ -160,73 +166,50 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   data() {
     return {
       dialog: false,
-     userScores:[],
-     player:"",
-     score:"",
-      spelers: [
+      userScores: [],
+      player: "",
+      score: "",
+      headers: [
         {
-          positie: 1,
-          speler: "Sergio",
-          score: 159,
+          text: "Positie",
+          value: "displayName",
+          sortable: false,
         },
         {
-          positie: 2,
-          speler: "Jan Rutger",
-          score: 237,
+          text: "Speler",
+          value: "playername",
+          sortable: true,
         },
         {
-          positie: 3,
-          speler: "Erik",
-          score: 262,
-        },
-        {
-          positie: 4,
-          speler: "Emiliano",
-          score: 305,
-        },
-        {
-          positie: 5,
-          speler: "Camillo",
-          score: 356,
-        },
-        {
-          positie: 6,
-          speler: "Martijn",
-          score: 375,
-        },
-        {
-          positie: 7,
-          speler: "Lollipop",
-          score: 392,
+          text: "Score",
+          value: "score",
+          sortable: true,
         },
       ],
     };
   },
-async  mounted(){
-await this.getData();
+  async mounted() {
+    await this.getData();
   },
-   methods: {
-      async getData() {
+  methods: {
+    async getData() {
       await axios
-        .get(
-          `https://streambigdata.nl/api/score`
-        )
-        .then((response) => (this.userScores= response.data));
-      },
-      async addPlayersScore() {
+        .get(`https://streambigdata.nl/api/score`)
+        .then((response) => (this.userScores = response.data));
+    },
+    async addPlayersScore() {
       try {
         await axios.post(`https://streambigdata.nl/api/score`, {
           playername: this.player,
           score: this.score,
-        
         });
         this.$swal.fire("Dankje!", "Aangemaakt", "success");
-        
+
         this.getData();
       } catch (reason) {
         this.errored = true;
@@ -235,6 +218,6 @@ await this.getData();
         throw reason;
       }
     },
-   }
+  },
 };
 </script>
