@@ -199,12 +199,12 @@ export default {
   methods: {
     async getData() {
       await axios
-        .get(`https://streambigdata.nl/api/score`)
+        .get(`http://localhost:3000/api/score`)
         .then((response) => (this.userScores = response.data));
     },
     async addPlayersScore() {
       try {
-        await axios.post(`https://streambigdata.nl/api/score`, {
+        await axios.post(`http://localhost:3000/api/score`, {
           playername: this.player,
           score: this.score,
         });
