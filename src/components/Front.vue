@@ -229,19 +229,19 @@ export default {
   methods: {
     async getData() {
       await axios
-        .get(`http://localhost:3000/api/score/highscores`)
+        .get(`https://aanvraagbouwvergunning/api/score/highscores`)
         .then((response) => (this.userScores = response.data));
     },
 
     async getLastGames() {
       await axios
-        .get(`http://localhost:3000/api/score/games`)
+        .get(`https://aanvraagbouwvergunning.nl/api/score/games`)
         .then((response) => (this.lastGames = response.data));
     },
 
     async addPlayersScore() {
       try {
-        await axios.post(`http://localhost:3000/api/score`, {
+        await axios.post(`https://aanvraagbouwvergunning.nl/api/score`, {
           player1: this.player1,
           player2: this.player2,
           player3: this.player3,
