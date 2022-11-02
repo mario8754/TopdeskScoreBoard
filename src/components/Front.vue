@@ -89,7 +89,7 @@
                 <v-row>
                   <v-text-field
                     v-model="score_right"
-                    label="score_right"
+                    label="Score"
                   
                     outlined
                     clearable
