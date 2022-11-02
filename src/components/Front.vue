@@ -7,7 +7,7 @@
             v-bind="attrs"
             v-on="on"
             color="#48bf86"
-            style="color:white;border-bottom: 4px solid #127359;margin-bottom:50px"
+            style="color:white;border-bottom: 4px solid #127359;margin-bottom:50px;margin-top:10px"
             block
           >
             Wedstrijd invoeren</v-btn
@@ -28,8 +28,8 @@
 
                 <v-row>
                   <v-text-field
-                    label="Speler 1 (test)"
-                    v-model="player"
+                    label="Speler 1"
+                    v-model="player1"
                     required
                     outlined
                     clearable
@@ -40,6 +40,7 @@
                 <v-row>
                   <v-text-field
                     label="Speler 2"
+                    v-model="player2"
                     outlined
                     clearable
                     required
@@ -49,17 +50,16 @@
 
                 <v-row>
                   <v-text-field
-                    v-model="score"
-                    label="Score (test)"
+                    v-model="score_left"
+                    label="Score"
                     required
                     outlined
-                    type="number"
+                   
                     clearable
                     style="margin: 5px;"
                   ></v-text-field>
                 </v-row>
               </v-col>
-
               <v-col cols="6">
                 <v-row
                   ><span style="color:red;"> <h5>Team Rood</h5></span></v-row
@@ -67,7 +67,8 @@
 
                 <v-row>
                   <v-text-field
-                    label="Speler 1"
+                    label="Speler 3"
+                    v-model="player3"
                     outlined
                     clearable
                     required
@@ -76,7 +77,8 @@
                 </v-row>
                 <v-row>
                   <v-text-field
-                    label="Speler 2"
+                    label="Speler 4"
+                    v-model="player4"
                     required
                     outlined
                     clearable
@@ -86,9 +88,9 @@
 
                 <v-row>
                   <v-text-field
-                    v-model="score"
-                    label="Score"
-                    type="number"
+                    v-model="score_right"
+                    label="score_right"
+                  
                     outlined
                     clearable
                     style="margin: 5px;"
@@ -117,21 +119,21 @@
         </v-card>
       </v-dialog>
       <v-row>
-        <v-col cols="8" sm="8">
+        <v-col cols="7" sm="7">
+          <div style="margin-bottom: 30px;">
+            <v-toolbar
+              color="blue"
+              dense
+              elevation="24"
+              flat
+              outlined
+              rounded
+              shaped
+            >
+              <h3>Rank</h3></v-toolbar
+            >
+          </div>
 
-<div style="margin-bottom: 30px;">
-
-<v-toolbar
-  color="blue"
-  dense
-  elevation="24"
-  flat
-  outlined
-  rounded
-  shaped
->     <h3>Rank</h3></v-toolbar>
-     </div>
-       
           <v-data-table
             :headers="headers"
             :items="userScores"
@@ -142,23 +144,45 @@
           </v-data-table>
         </v-col>
 
-        <v-col cols="4" sm="4">
-
-          <div  style="margin-bottom: 30px;text-align: center;">
-
-<v-toolbar
-  color="blue"
-  dense
-  elevation="24"
-  flat
-  outlined
-  rounded
-  shaped
->           <h3 >Wedstrijden</h3></v-toolbar>
-     </div>
-    
-     
-          Sergio - 7-10 Erik
+        <v-col cols="5" sm="5">
+          <div style="margin-bottom: 30px;text-align: center;">
+            <v-toolbar
+              color="blue"
+              dense
+              elevation="24"
+              flat
+              outlined
+              rounded
+              shaped
+            >
+              <h3>Wedstrijden</h3></v-toolbar
+            >
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <th
+                    class="text-left"
+                    style="padding-bottom:1rem;padding-top:1rem"
+                  >
+                    Laatste 4
+                  </th>
+                </thead>
+                <tbody>
+                  <tr v-for="games in lastGames" :key="games.id">
+                    <td>{{ games.player1 }}  <br>{{ games.player2 }}</td>
+                   
+                    <td>{{ games.score_left }}</td> 
+                    <td><img src="@/assets/beker.png" v-show="games.score_left > games.score_right" ></td>
+                    <td>-</td>
+                    <td>{{ games.score_right }}</td> <img src="@/assets/beker.png" v-show="games.score_right > games.score_left" >
+                
+                    <td>    {{ games.player3 }} <br>{{ games.player4 }}</td>
+                   
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </div>
         </v-col>
       </v-row>
     </div>
@@ -171,9 +195,14 @@ export default {
   data() {
     return {
       dialog: false,
+      player1: "",
+      player2: "",
+      player3: "",
+      player4: "",
+      score_left: null,
+      score_right: null,
       userScores: [],
-      player: "",
-      score: "",
+      lastGames: [],
       headers: [
         {
           text: "Positie",
@@ -182,7 +211,7 @@ export default {
         },
         {
           text: "Speler",
-          value: "playername",
+          value: "name",
           sortable: true,
         },
         {
@@ -195,18 +224,30 @@ export default {
   },
   async mounted() {
     await this.getData();
+    await this.getLastGames();
   },
   methods: {
     async getData() {
       await axios
-        .get(`http://localhost:3000/api/score`)
+        .get(`http://localhost:3000/api/score/highscores`)
         .then((response) => (this.userScores = response.data));
     },
+
+    async getLastGames() {
+      await axios
+        .get(`http://localhost:3000/api/score/games`)
+        .then((response) => (this.lastGames = response.data));
+    },
+
     async addPlayersScore() {
       try {
         await axios.post(`http://localhost:3000/api/score`, {
-          playername: this.player,
-          score: this.score,
+          player1: this.player1,
+          player2: this.player2,
+          player3: this.player3,
+          player4: this.player4,
+          score_left: this.score_left,
+          score_right: this.score_right,
         });
         this.$swal.fire("Dankje!", "Aangemaakt", "success");
 
@@ -215,6 +256,7 @@ export default {
         this.errored = true;
         console.log(reason);
         this.$swal.fire("Error!", "Er Is een foutmelding.", "error");
+
         throw reason;
       }
     },
