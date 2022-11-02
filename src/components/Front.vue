@@ -164,7 +164,7 @@
                     class="text-left"
                     style="padding-bottom:1rem;padding-top:1rem"
                   >
-                    Laatste 4
+                    Laatste 4 wedstrijden
                   </th>
                 </thead>
                 <tbody>
