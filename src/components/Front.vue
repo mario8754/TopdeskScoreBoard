@@ -90,7 +90,6 @@
                   <v-text-field
                     v-model="score_right"
                     label="Score"
-                  
                     outlined
                     clearable
                     style="margin: 5px;"
@@ -227,6 +226,16 @@ export default {
     await this.getLastGames();
   },
   methods: {
+
+       reset(){
+       this.player1 = "";
+      this.player2 = "";
+      this.player3 = "";
+      this.player4 = "";
+      this.score_left = "";
+      this.score_right = "";
+    },
+   
     async getData() {
       await axios
         .get(`https://aanvraagbouwvergunning/api/score/highscores`)
@@ -249,9 +258,12 @@ export default {
           score_left: this.score_left,
           score_right: this.score_right,
         });
+        this.reset();
+           await this.getData();
+        await this.getLastGames();
         this.$swal.fire("Dankje!", "Aangemaakt", "success");
+     this.dialog = false;
 
-        this.getData();
       } catch (reason) {
         this.errored = true;
         console.log(reason);
@@ -260,6 +272,7 @@ export default {
         throw reason;
       }
     },
+  
   },
 };
 </script>
