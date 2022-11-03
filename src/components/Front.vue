@@ -141,13 +141,13 @@
           >
       
 
-
+<!-- 
             <template #[`item.position`]="{item}" v-for="(id ,index) in userScores">
           
                         # {{index }}
     
 
-                     </template> 
+                     </template>  -->
 
                   
 
