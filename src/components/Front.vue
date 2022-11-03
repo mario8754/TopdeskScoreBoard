@@ -54,7 +54,6 @@
                     label="Score"
                     required
                     outlined
-                   
                     clearable
                     style="margin: 5px;"
                   ></v-text-field>
@@ -140,6 +139,19 @@
             :hide-default-footer="true"
             class="elevation-1"
           >
+      
+
+
+            <template #[`item.position`]="{item}" v-for="id ,index in userScores">
+          
+                        # {{index ++}}
+    
+
+                     </template> 
+
+                  
+
+
           </v-data-table>
         </v-col>
 
@@ -168,15 +180,23 @@
                 </thead>
                 <tbody>
                   <tr v-for="games in lastGames" :key="games.id">
-                    <td>{{ games.player1 }}  <br>{{ games.player2 }}</td>
-                   
-                    <td>{{ games.score_left }}</td> 
-                    <td><img src="@/assets/beker.png" v-show="games.score_left > games.score_right" ></td>
+                    <td>{{ games.player1 }} <br />{{ games.player2 }}</td>
+
+                    <td>{{ games.score_left }}</td>
+                    <td>
+                      <img
+                        src="@/assets/beker.png"
+                        v-show="games.score_left > games.score_right"
+                      />
+                    </td>
                     <td>-</td>
-                    <td>{{ games.score_right }}</td> <img src="@/assets/beker.png" v-show="games.score_right > games.score_left" >
-                
-                    <td>    {{ games.player3 }} <br>{{ games.player4 }}</td>
-                   
+                    <td>{{ games.score_right }}</td>
+                    <img
+                      src="@/assets/beker.png"
+                      v-show="games.score_right > games.score_left"
+                    />
+
+                    <td>{{ games.player3 }} <br />{{ games.player4 }}</td>
                   </tr>
                 </tbody>
               </template>
@@ -205,7 +225,7 @@ export default {
       headers: [
         {
           text: "Positie",
-          value: "displayName",
+          value: "position",
           sortable: false,
         },
         {
@@ -225,32 +245,33 @@ export default {
     await this.getData();
     await this.getLastGames();
   },
-  methods: {
 
-       reset(){
-       this.player1 = "";
+
+  methods: {
+    reset() {
+      this.player1 = "";
       this.player2 = "";
       this.player3 = "";
       this.player4 = "";
       this.score_left = "";
       this.score_right = "";
     },
-   
+
     async getData() {
       await axios
-        .get(`https://aanvraagbouwvergunning/api/score/highscores`)
+        .get(`https://server.hacketon.nl/api/score/highscores`)
         .then((response) => (this.userScores = response.data));
     },
 
     async getLastGames() {
       await axios
-        .get(`https://aanvraagbouwvergunning.nl/api/score/games`)
+        .get(`https://server.hacketon.nl/api/score/games`)
         .then((response) => (this.lastGames = response.data));
     },
 
     async addPlayersScore() {
       try {
-        await axios.post(`https://aanvraagbouwvergunning.nl/api/score`, {
+        await axios.post(`https://server.hacketon.nl/api/score`, {
           player1: this.player1,
           player2: this.player2,
           player3: this.player3,
@@ -259,11 +280,10 @@ export default {
           score_right: this.score_right,
         });
         this.reset();
-           await this.getData();
+        await this.getData();
         await this.getLastGames();
         this.$swal.fire("Dankje!", "Aangemaakt", "success");
-     this.dialog = false;
-
+        this.dialog = false;
       } catch (reason) {
         this.errored = true;
         console.log(reason);
@@ -272,7 +292,6 @@ export default {
         throw reason;
       }
     },
-  
   },
 };
 </script>
