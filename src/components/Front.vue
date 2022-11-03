@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <div>
       <v-dialog v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
@@ -117,7 +117,7 @@
         </v-card>
       </v-dialog>
       <v-row>
-        <v-col cols="7" sm="7">
+        <v-col cols="12"  md="7" xs="12" sm="7" lg="7">
           <div style="margin-bottom: 30px;">
             <v-toolbar
               color="blue"
@@ -142,9 +142,9 @@
       
 
 
-            <template #[`item.position`]="{item}" v-for="id ,index in userScores">
+            <template #[`item.position`]="{item}" v-for="(id ,index) in userScores">
           
-                        # {{index ++}}
+                        # {{index }}
     
 
                      </template> 
@@ -155,7 +155,7 @@
           </v-data-table>
         </v-col>
 
-        <v-col cols="5" sm="5">
+        <v-col cols="12"  md="5" xs="12" sm="5" lg="5">
           <div style="margin-bottom: 30px;text-align: center;">
             <v-toolbar
               color="blue"
