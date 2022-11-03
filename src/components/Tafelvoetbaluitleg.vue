@@ -1,9 +1,12 @@
 <template>
 
 <v-container>
-    <v-btn color="#48bf86" style="color:white;border-bottom: 4px solid #127359;" block> Wedstrijd invoeren</v-btn>
-    <v-divider></v-divider>
-<h4>Spelregels</h4>
+
+
+    <div style="margin-top:25px;margin-bottom:25px">
+<h4 class="text-center">Spelregels</h4>
+
+    </div>
     <p>
     1.Scoren gebeurt uitsluitend met de aanvallers, verdedigers of keeper; wanneer een middenvelder een bal in het doel schiet, telt dit niet als goal.<br>
     2.Draai de stokken niet rond. Wanneer hierdoor een bal in het goal belandt telt dit niet als goal.<br>

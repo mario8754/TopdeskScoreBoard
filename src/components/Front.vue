@@ -15,9 +15,7 @@
         </template>
         <v-card>
           <v-card-title>
-            <span class="text-center" style="text-align:center"
-              >Wedstrijd invoeren</span
-            >
+            
           </v-card-title>
           <v-card-text>
             <v-row>
