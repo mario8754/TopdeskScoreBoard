@@ -79,9 +79,10 @@
                       label="Score"
                       required
                       outlined
-                      clearable
+                  
                       number
                       style="margin: 5px;"
+                        type="number"
                     ></v-text-field>
                   </v-row>
                 </v-col>
@@ -124,9 +125,10 @@
                       v-model="score_right"
                       label="Score"
                       outlined
-                      clearable
+                    
                       style="margin: 5px;"
                       required
+                      type="number"
                     ></v-text-field>
                   </v-row>
                 </v-col>
