@@ -1,6 +1,5 @@
 <template>
   <div style="position: relative; display: unset">
- 
     <div class="topnav" id="myTopnav">
       <router-link to="/">
         <img
@@ -8,16 +7,19 @@
           src="@/assets/logo.png"
           alt="Topdesk"
           title="Topdesk interne wedstrijden"
-      
       /></router-link>
       <div class="links">
-        <router-link class="menu-item" :to="{ name: 'Ranking' }">Ranking</router-link>
-
-        <router-link class="menu-item" :to="{ name: 'Speluitleg' }"
-          >Speluitleg</router-link
+        <router-link class="menu-item" :to="{ name: 'Ranking' }"
+          >Ranking</router-link
         >
 
-      
+        <router-link class="menu-item" :to="{ name: 'Speluitleg' }"
+          >Game rules</router-link
+        >
+
+        <router-link class="menu-item" :to="{ name: 'Events' }"
+          >Up coming events</router-link
+        >
       </div>
 
       <div id="hamburger" @click="openSidebar()">
@@ -30,28 +32,27 @@
       <div id="cross" @click="closeSidebar()">
         <span>&times;</span>
       </div>
-    
-   
-  <router-link class="menu-item" :to="{ name: 'Ranking' }">Ranking</router-link>
 
-        <router-link class="menu-item" :to="{ name: 'Speluitleg' }"
-          >Speluitleg</router-link
-        >
+      <router-link class="menu-item" :to="{ name: 'Ranking' }"
+        >Ranking</router-link
+      >
 
-    
+      <router-link class="menu-item" :to="{ name: 'Speluitleg' }"
+        >Speluitleg</router-link
+      >
+      <router-link class="menu-item" :to="{ name: 'Events' }"
+        >Up coming events</router-link
+      >
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   data() {
-    return {
-    
-    };
+    return {};
   },
-  
+
   mounted() {
     document
       .querySelectorAll("a")
@@ -64,9 +65,9 @@ export default {
     closeSidebar() {
       document.getElementById("sidebar").style.display = "none";
     },
-   
-
-   
+    melding() {
+      this.$swal("hallo");
+    },
   },
 };
 </script>
@@ -130,7 +131,7 @@ img {
 }
 .logo {
   width: 200px;
- 
+
   margin-left: 5%;
 }
 .links {
@@ -156,14 +157,14 @@ img {
   color: white;
 }
 .menu-item a:active {
-  background-color:#0a7da0  !important;
+  background-color: #0a7da0 !important;
   color: #0a7da0;
 }
 .menu-item .active {
   background-color: white !important;
 }
 .menu-item.router-link-exact-active.router-link-active {
-  color: rgb(72, 191, 134);;
+  color: gainsboro;
 }
 .topnav .icon {
   display: none;

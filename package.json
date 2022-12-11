@@ -15,6 +15,7 @@
     "firebase": "^8.3.2",
     "vee-validate": "^3.4.14",
     "vue": "^2.6.11",
+    "vue-confetti": "^2.3.0",
     "vue-cover-gallery": "^1.0.7",
     "vue-google-charts": "^1.1.0",
     "vue-html2pdf": "^1.8.0",

@@ -22,7 +22,7 @@
     }),
     watch: {
       $route(to) {
-        document.title = to.meta.title || 'Your Website';
+        document.title = to.meta.title || 'TOPDesk Fifa ranking';
       },
     },
   };

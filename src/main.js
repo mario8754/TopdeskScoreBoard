@@ -2,11 +2,14 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import vuetify from './plugins/vuetify';
-
+import VueConfetti from 'vue-confetti'
 import VueMeta from 'vue-meta';
 import VueSweetalert2 from 'vue-sweetalert2';
 import AOS from 'aos';
 
+
+//conveti
+Vue.use(VueConfetti)
 
 //Editor
 import Vue2Editor from 'vue2-editor';
