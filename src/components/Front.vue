@@ -46,25 +46,31 @@
                   >
 
                   <v-row>
-                    <v-text-field
-                      label="Speler 1"
-                      v-model="player1"
+                    <v-autocomplete
                       required
                       outlined
                       clearable
                       style="margin: 5px;"
-                    ></v-text-field>
+                      :items="userScores.flat()"
+                      v-model="player1"
+                      item-text="name"
+                      item-value="id"
+                      label="Speler 1"
+                    ></v-autocomplete>
                   </v-row>
 
                   <v-row>
-                    <v-text-field
-                      label="Speler 2"
-                      v-model="player2"
+                    <v-autocomplete
+                      required
                       outlined
                       clearable
-                      required
                       style="margin: 5px;"
-                    ></v-text-field>
+                      :items="userScores.flat()"
+                      v-model="player2"
+                      item-text="name"
+                      item-value="id"
+                      label="Speler 2"
+                    ></v-autocomplete>
                   </v-row>
 
                   <v-row>
@@ -74,6 +80,7 @@
                       required
                       outlined
                       clearable
+                      number
                       style="margin: 5px;"
                     ></v-text-field>
                   </v-row>
@@ -86,24 +93,30 @@
                   >
 
                   <v-row>
-                    <v-text-field
-                      label="Speler 3"
-                      v-model="player3"
+                    <v-autocomplete
+                      required
                       outlined
                       clearable
-                      required
                       style="margin: 5px;"
-                    ></v-text-field>
+                      :items="userScores.flat()"
+                      v-model="player3"
+                      item-text="name"
+                      item-value="id"
+                      label="Speler 3"
+                    ></v-autocomplete>
                   </v-row>
                   <v-row>
-                    <v-text-field
-                      label="Speler 4"
-                      v-model="player4"
+                    <v-autocomplete
                       required
                       outlined
                       clearable
                       style="margin: 5px;"
-                    ></v-text-field>
+                      :items="userScores.flat()"
+                      v-model="player4"
+                      item-text="name"
+                      item-value="id"
+                      label="Speler 4"
+                    ></v-autocomplete>
                   </v-row>
 
                   <v-row>
@@ -164,15 +177,13 @@
                 # {{ index + 1 }}
               </template>
 
-                <template #[`item.GW`]="{item}">
-                 {{ item.w + item.v}}
+              <template #[`item.GW`]="{item}">
+                {{ item.w + item.v }}
               </template>
 
-               <template #[`item.D`]="{item}">
-                 {{ item.w + item.v / item.scoreß}}
+              <template #[`item.D`]="{item}">
+                {{ item.w + item.v / item.score }}%
               </template>
-
-
             </v-data-table>
           </v-col>
 
@@ -207,11 +218,10 @@
                       <td>
                         <img
                           src="@/assets/beker.png"
-                         
                           v-show="games.score_left > games.score_right"
                         />
-                           </td>
-                           <td>
+                      </td>
+                      <td>
                         <span class="score_blue">{{ games.score_left }}</span>
                       </td>
 
@@ -227,10 +237,9 @@
                       </td>
                       <td>
                         <span class="score_red">{{ games.score_right }}</span>
-                        
                       </td>
                       <td>
-<img
+                        <img
                           src="@/assets/beker.png"
                           v-show="games.score_right > games.score_left"
                         />
@@ -312,6 +321,11 @@ export default {
           sortable: true,
         },
       ],
+      loading: false,
+      items: [],
+      search: null,
+      select: null,
+      names: [],
     };
   },
 
@@ -398,7 +412,7 @@ export default {
         player1 && player2 && player3 && player4 && score_left && score_right;
       if (formisValid) {
         await axios.post(`http://localhost:3000/api/score`, {
-            player1: this.player1[0].toUpperCase() + this.player1.slice(1),
+          player1: this.player1[0].toUpperCase() + this.player1.slice(1),
           player2: this.player2[0].toUpperCase() + this.player2.slice(1),
           player3: this.player3[0].toUpperCase() + this.player3.slice(1),
           player4: this.player4[0].toUpperCase() + this.player4.slice(1),
@@ -445,6 +459,4 @@ tbody tr:nth-of-type(odd) {
   font-weight: bold;
   font-size: 1.2em;
 }
-
-
 </style>
