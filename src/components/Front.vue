@@ -388,7 +388,7 @@ export default {
 
     async getData() {
       await axios
-        .get(`http://localhost:3000/api/score/highscores`)
+        .get(`https://score.hacketon.nl/api/score/highscores`)
         .then((response) => (this.userScores = response.data));
     },
     isNight() {
@@ -398,7 +398,7 @@ export default {
 
     async getLastGames() {
       await axios
-        .get(`http://localhost:3000/api/score/games`)
+        .get(`https://score.hacketon.nl/api/score/games`)
         .then((response) => (this.lastGames = response.data));
     },
 
@@ -413,7 +413,7 @@ export default {
       let formisValid =
         player1 && player2 && player3 && player4 && score_left && score_right;
       if (formisValid) {
-        await axios.post(`http://localhost:3000/api/score`, {
+        await axios.post(`https://score.hacketon.nl/api/score`, {
           player1: this.player1[0].toUpperCase() + this.player1.slice(1),
           player2: this.player2[0].toUpperCase() + this.player2.slice(1),
           player3: this.player3[0].toUpperCase() + this.player3.slice(1),
