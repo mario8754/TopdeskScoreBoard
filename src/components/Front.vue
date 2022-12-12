@@ -47,21 +47,41 @@
                   >
 
                   <v-row>
-                    <v-autocomplete
+                    <v-text-field
+                     v-model="player1"
+                  label="Speler 1"
                       required
                       outlined
-                      clearable
+                  
+                      number
+                      style="margin: 5px;"
+                       
+                    ></v-text-field>
+                    <!-- <v-autocomplete
+                      required
+                      outlined
+                    
                       style="margin: 5px;"
                       :items="userScores.flat()"
                       v-model="player1"
                       item-text="name"
                       item-value="id"
                       label="Speler 1"
-                    ></v-autocomplete>
+                    ></v-autocomplete> -->
                   </v-row>
 
                   <v-row>
-                    <v-autocomplete
+                    <v-text-field
+                     v-model="player2"
+                  label="Speler 2"
+                      required
+                      outlined
+                  
+                      number
+                      style="margin: 5px;"
+                    
+                    ></v-text-field>
+                    <!-- <v-autocomplete
                       required
                       outlined
                       clearable
@@ -71,7 +91,7 @@
                       item-text="name"
                       item-value="id"
                       label="Speler 2"
-                    ></v-autocomplete>
+                    ></v-autocomplete> -->
                   </v-row>
 
                   <v-row>
@@ -80,10 +100,10 @@
                       label="Score"
                       required
                       outlined
-                  
-                      number
+                   type="number"
+                      
                       style="margin: 5px;"
-                        type="number"
+                 
                     ></v-text-field>
                   </v-row>
                 </v-col>
@@ -95,7 +115,17 @@
                   >
 
                   <v-row>
-                    <v-autocomplete
+                    <v-text-field
+                     v-model="player3"
+                  label="Speler 3"
+                      required
+                      outlined
+                  
+                      number
+                      style="margin: 5px;"
+                     
+                    ></v-text-field>
+                    <!-- <v-autocomplete
                       required
                       outlined
                       clearable
@@ -105,10 +135,20 @@
                       item-text="name"
                       item-value="id"
                       label="Speler 3"
-                    ></v-autocomplete>
+                    ></v-autocomplete> -->
                   </v-row>
                   <v-row>
-                    <v-autocomplete
+                    <v-text-field
+                     v-model="player4"
+                  label="Speler 4"
+                      required
+                      outlined
+                  
+                      number
+                      style="margin: 5px;"
+                    
+                    ></v-text-field>
+                    <!-- <v-autocomplete
                       required
                       outlined
                       clearable
@@ -118,7 +158,7 @@
                       item-text="name"
                       item-value="id"
                       label="Speler 4"
-                    ></v-autocomplete>
+                    ></v-autocomplete> -->
                   </v-row>
 
                   <v-row>
