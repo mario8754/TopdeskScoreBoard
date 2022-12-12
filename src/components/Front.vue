@@ -17,9 +17,10 @@
             <v-btn
               v-bind="attrs"
               v-on="on"
-              color="secondary"
-              style="color:white;border-bottom: 4px solid #127359;margin-bottom:50px;margin-top:10px"
+           color="success"
+              style="margin-bottom:50px;margin-top:10px"
               block
+             
             >
               Enter match</v-btn
             >
