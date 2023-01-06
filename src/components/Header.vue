@@ -152,7 +152,7 @@ img {
   font-weight: 600;
 }
 .menu-item:hover {
-  background-color: white;
+  /* background-color: white; */
   opacity: 0.2;
   color: white;
 }
@@ -161,7 +161,7 @@ img {
   color: #0a7da0;
 }
 .menu-item .active {
-  background-color: white !important;
+  background-color: green !important;
 }
 .menu-item.router-link-exact-active.router-link-active {
   color: gainsboro;
