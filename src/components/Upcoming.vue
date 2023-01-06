@@ -118,7 +118,7 @@ export default {
     },
     async getData() {
       await axios
-        .get(`http://localhost:3000/api/v3/tournament/getPlayers`)
+        .get(`https://score.hacketon.nl/api/v3/tournament/getPlayers`)
         .then((response) => (this.teams = response.data));
     },
     async addPlayers() {
@@ -128,7 +128,7 @@ export default {
       let formisValid = player1 && player2 && teamname;
       if (formisValid) {
         await axios.post(
-          `http://localhost:3000/api/v3/tournament/addPlayers`,
+          `https://score.hacketon.nl/api/v3/tournament/addPlayers`,
           {
             player1: this.player1[0].toUpperCase() + this.player1.slice(1),
             player2: this.player2[0].toUpperCase() + this.player2.slice(1),
