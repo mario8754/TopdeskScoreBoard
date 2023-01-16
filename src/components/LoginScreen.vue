@@ -119,7 +119,7 @@ export default {
           // this.$router.push("/Dashboard");
           const token = await firebase.auth().currentUser.getIdToken(true);
           if (token) axios.defaults.headers.common["fireToken"] = token;
-          const response = await axios.get(`http://localhost:3000/api/whoami`);
+          const response = await axios.get(`https://score.hacketon.nl/api/whoami`);
          
           if (["BEHEERDER"].includes(response.data.accessRight)) {
             this.$router.push("/Dashboard");
