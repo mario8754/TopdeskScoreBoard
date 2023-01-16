@@ -23,7 +23,7 @@
 
       <router-link
           class="menu-item"
-          :to="{ name: 'Inloggen' }"
+          :to="{ name: 'Login' }"
           v-if="!isLoggedIn"
         >
           Inloggen</router-link
@@ -39,7 +39,7 @@
 
         <router-link
           v-if="isLoggedIn"
-          :to="{ name: 'Inloggen' }"
+          :to="{ name: 'Login' }"
           v-slot="{ navigate, href }"
         >
           <a
@@ -83,7 +83,7 @@
       
        <router-link
           class="menu-item"
-          :to="{ name: 'Inloggen' }"
+          :to="{ name: 'Login' }"
           v-if="!isLoggedIn"
         >
           Inloggen</router-link
@@ -99,7 +99,7 @@
 
         <router-link
           v-if="isLoggedIn"
-          :to="{ name: 'Inloggen' }"
+          :to="{ name: 'Login' }"
           v-slot="{ navigate, href }"
         >
           <a
