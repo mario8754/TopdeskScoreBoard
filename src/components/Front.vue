@@ -183,7 +183,7 @@
           </v-card>
         </v-dialog>
         <v-row>
-          <v-col cols="12" md="7" xs="12" sm="7" lg="7">
+          <v-col cols="12" md="7" xs="12" sm="6" lg="6">
             <div style="margin-bottom: 30px;">
               <v-toolbar color="blue">
                 <h4 style="color:white">RANKING</h4>
@@ -230,7 +230,7 @@
             </v-data-table>
           </v-col>
 
-          <v-col cols="12" md="5" xs="12" sm="5" lg="5">
+          <v-col cols="12" md="5" xs="12" sm="6" lg="6">
             <div style="margin-bottom: 30px;text-align: center;">
               <v-toolbar
                 color="blue"
@@ -263,13 +263,21 @@
                           src="@/assets/beker.png"
                           v-show="games.score_left > games.score_right"
                         />
+                             <img
+                          src="@/assets/crawl.png"
+                          v-show="games.score_right == 10 && games.score_left == 2 "
+                        />
+                        <img
+                          src="@/assets/crawl.png"
+                          v-show="games.score_right == 10 && games.score_left == 1 "
+                        />
                       </td>
                       <td>
                         <span class="score_blue">{{ games.score_left }}</span>
                       </td>
 
                       <td>
-                        -
+                        - <br>
                         <span class="date">
                           {{
                             games.createDate
@@ -282,6 +290,17 @@
                         <span class="score_red">{{ games.score_right }}</span>
                       </td>
                       <td>
+
+                               <img
+                          src="@/assets/crawl.png"
+                          v-show="games.score_left == 10 && games.score_right == 2 "
+                        />
+
+                            <img
+                          src="@/assets/crawl.png"
+                          v-show="games.score_left == 10 && games.score_right == 1 "
+                        />
+
                         <img
                           src="@/assets/beker.png"
                           v-show="games.score_right > games.score_left"
