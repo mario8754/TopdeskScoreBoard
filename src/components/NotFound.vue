@@ -1,25 +1,31 @@
-
-
 <template>
-  <div >
-  <img src= @/assets/logo.png height="200" width="100%" />
 
-       <v-container >
 
-    <div class="err">4</div>
-    <i class="far fa-question-circle fa-spin"></i>
-    <div class="err2">4</div>
-    
-    <div class="msg">
-      <p style="margin-top:20px">Misschien is deze pagina verplaatst? of verwijderd? <br>Het kan ook zijn dat 
-   het niet bestaat?</p>
-   <div class="space">
-<v-btn color="warning" @click="goBack()">Lets go back home</v-btn>
-       </div>
-       </div>
+      <section class="page_404">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 ">
+              <div class="col-sm-10 col-sm-offset-1  text-center">
+                <div class="four_zero_four_bg">
+                  <h1 class="text-center ">404</h1>
+                </div>
 
-      </v-container>
+                <div class="contant_box_404">
+                  <h3 class="h2">
+                    Look like you're lost
+                  </h3>
+
+                  <p>the page you are looking for not avaible!</p>
+
+                 <v-btn color="#0a7da0" @click="goBack()"> Go Home </v-btn>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+  
+  
 </template>
 
 <script>
@@ -29,60 +35,46 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: "/" });
     },
   },
 };
 </script>
 <style scoped>
-  .err {
-    color: #64B5F6;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 11rem;
-    position:absolute;
-    left: 30%;
-    top: 8%;
-    margin-top:10rem
-  }
-
-.far {
-  position: absolute;
-  font-size: 8.5rem;
-  left: 42%;
-  top: 15%;
-  color: #64B5F6;
-      margin-top:10rem
+.page_404 {
+  padding: 100px 0;
+  background: #fff;
+  font-family: "Arvo", serif;
 }
 
- .err2 {
-    color: #64B5F6;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 11rem;
-    position:absolute;
-    left: 56%;
-    top: 8%;
-        margin-top:10rem
-  }
-
-.msg {
-    text-align: center;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 1.6rem;
-    position:absolute;
-    left: 12%;
-    top: 45%;
-    width: 75%;
-    color:"orange";
-        margin-top:6rem;
-  }
-
-a {
-  text-decoration: none;
-  color: white;
+.page_404 img {
+  width: 100%;
 }
 
-a:hover {
-  text-decoration: underline;
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+  color: #0a7da0 !important;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+  color: #0a7da0 !important;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}
+.contant_box_404 {
+  margin-top: -50px;
 }
 </style>
-

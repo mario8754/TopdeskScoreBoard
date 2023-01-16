@@ -20,6 +20,42 @@
         <router-link class="menu-item" :to="{ name: 'Events' }"
           >Up coming events</router-link
         >
+
+      <router-link
+          class="menu-item"
+          :to="{ name: 'Inloggen' }"
+          v-if="!isLoggedIn"
+        >
+          Inloggen</router-link
+        >
+
+        <router-link
+          class="menu-item"
+          :to="{ name: 'Dashboard' }"
+          v-if="isLoggedIn"
+        >
+          Portaal</router-link
+        >
+
+        <router-link
+          v-if="isLoggedIn"
+          :to="{ name: 'Inloggen' }"
+          v-slot="{ navigate, href }"
+        >
+          <a
+            :href="href"
+            class="menu-item"
+            @click="
+              () => {
+                logOut();
+                navigate();
+              }
+            "
+            >Uitloggen</a
+          >
+        </router-link>
+
+        
       </div>
 
       <div id="hamburger" @click="openSidebar()">
@@ -43,14 +79,55 @@
       <router-link class="menu-item" :to="{ name: 'Events' }"
         >Up coming events</router-link
       >
+
+      
+       <router-link
+          class="menu-item"
+          :to="{ name: 'Inloggen' }"
+          v-if="!isLoggedIn"
+        >
+          Inloggen</router-link
+        >
+
+        <router-link
+          class="menu-item"
+          :to="{ name: 'Dashboard' }"
+          v-if="isLoggedIn"
+        >
+          Portaal</router-link
+        >
+
+        <router-link
+          v-if="isLoggedIn"
+          :to="{ name: 'Inloggen' }"
+          v-slot="{ navigate, href }"
+        >
+          <a
+            :href="href"
+            class="menu-item"
+            @click="
+              () => {
+                logOut();
+                navigate();
+              }
+            "
+            >Uitloggen</a
+          >
+        </router-link>
     </div>
   </div>
 </template>
 
 <script>
+import firebase from "firebase";
 export default {
   data() {
-    return {};
+    return {
+            isLoggedIn: false,
+    };
+  },
+    async created() {
+    await this.getUser();
   },
 
   mounted() {
@@ -65,8 +142,17 @@ export default {
     closeSidebar() {
       document.getElementById("sidebar").style.display = "none";
     },
-    melding() {
-      this.$swal("hallo");
+ 
+       getUser() {
+      firebase.auth().onAuthStateChanged(async (user) => {
+        console.log({ user: firebase.auth().currentUser });
+        this.isLoggedIn = !!user;
+        this.user = user ? user : null;
+      });
+    },
+
+    async logOut() {
+      await firebase.auth().signOut();
     },
   },
 };
