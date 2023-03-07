@@ -465,7 +465,7 @@ export default {
 
 async getData() {
       await axios
-        .get(`http://localhost:3000/api/score/highscores?page=${this.currentPage}`)
+        .get(`https://score.hacketon.nl/api/score/highscores?page=${this.currentPage}`)
         .then((response) => (this.userScores = response.data));
     },
     isNight() {
@@ -475,7 +475,7 @@ async getData() {
 
     async getLastGames() {
       await axios
-        .get(`http://localhost:3000/api/score/games`)
+        .get(`https://score.hacketon.nl/api/score/games`)
         .then((response) => (this.lastGames = response.data));
     },
 
