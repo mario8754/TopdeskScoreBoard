@@ -1,8 +1,47 @@
 <template>
   <div>
+    
     <v-container style="padding-top: 4rem">
+        <v-bottom-navigation style="margin-bottom:15px" v-if="active">
+       
+
+        <v-btn
+          :color="activeElement === 'Pending' ? '' : ''"
+          @click="activeElement = 'Pending'"
+        >
+          <span>Gegevens bewerken</span>
+
+          <v-icon :color="activeElement === 'Pending' ? 'blue lighten-1' : ''"
+            >gavel</v-icon
+          >
+        </v-btn>
+
+        <v-btn
+          :color="activeElement === 'Approved' ? '' : ''"
+          @click="activeElement = 'Approved'"
+        >
+      
+
+          <v-icon :color="activeElement === 'Approved' ? 'green lighten-1' : ''">
+            mdi-checkbox-marked-circle</v-icon
+          >
+        </v-btn>
+
+        <!-- <v-btn
+          :color="activeElement === 'Cancelled' ? '' : ''"
+          @click="activeElement = 'Cancelled'"
+        >
+          <span>Gegeannuleerd</span>
+
+          <v-icon :color="activeElement === 'Cancelled' ? 'red darken-1' : ''"
+            >mdi-cancel</v-icon
+          >
+        </v-btn> -->
+      </v-bottom-navigation>
+
       <v-row style="margin-top: 15px">
-        <v-col cols="10">
+        
+        <v-col cols="10" v-if="activeElement === 'Pending'">
           <v-card>
             <v-card-title>
               All Games
@@ -167,9 +206,13 @@
 </template>
 
 <script>
+
 import axios from "axios";
 export default {
   data: () => ({
+
+      active: true,
+      activeElement: "Pending",
     search: "",
     model: false,
     dialogDelete: false,

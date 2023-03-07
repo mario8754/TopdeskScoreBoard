@@ -228,6 +228,14 @@
                 {{ item.w + item.v / item.score }}%
               </template>
             </v-data-table>
+             <div class="text-center">
+    <v-pagination
+      v-model="currentPage"
+      :length="3"
+      :total-visible="7"
+      @input="getData"
+    ></v-pagination>
+  </div>
           </v-col>
 
           <v-col cols="12" md="5" xs="12" sm="6" lg="6">
@@ -271,6 +279,10 @@
                           src="@/assets/crawl.png"
                           v-show="games.score_right == 10 && games.score_left == 1 "
                         />
+                           <img
+                          src="@/assets/crawl.png"
+                          v-show="games.score_right == 10 && games.score_left == 0 "
+                        />
                       </td>
                       <td>
                         <span class="score_blue">{{ games.score_left }}</span>
@@ -300,6 +312,10 @@
                           src="@/assets/crawl.png"
                           v-show="games.score_left == 10 && games.score_right == 1 "
                         />
+                                 <img
+                          src="@/assets/crawl.png"
+                          v-show="games.score_left == 10 && games.score_right == 0 "
+                        />
 
                         <img
                           src="@/assets/beker.png"
@@ -328,6 +344,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+         currentPage: 1,
       show: false,
       stats: true,
       dialog: false,
@@ -446,9 +463,9 @@ export default {
       this.score_right = "";
     },
 
-    async getData() {
+async getData() {
       await axios
-        .get(`https://score.hacketon.nl/api/score/highscores`)
+        .get(`http://localhost:3000/api/score/highscores?page=${this.currentPage}`)
         .then((response) => (this.userScores = response.data));
     },
     isNight() {
@@ -458,7 +475,7 @@ export default {
 
     async getLastGames() {
       await axios
-        .get(`https://score.hacketon.nl/api/score/games`)
+        .get(`http://localhost:3000/api/score/games`)
         .then((response) => (this.lastGames = response.data));
     },
 
